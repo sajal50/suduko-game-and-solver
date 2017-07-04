@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import GameComponent from '../../components/GameComponent/GameComponent.js';
-import { getNewGame, updateCurrentGameBoard } from '../../actions/initialLoadingActions.js';
+import { getNewGame, updateCurrentGameBoard, getPreviousGameBoard } from '../../actions/initialLoadingActions.js';
 const mapStateToProps = (state) => {
 
 	return {
@@ -17,8 +17,11 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		updateCurrentGameBoard : (index, value) => {
 			dispatch (updateCurrentGameBoard(index, value));
+		},
+		getPreviousGameBoard : () => {
+			dispatch (getPreviousGameBoard());
 		}
-	};
+ 	};
 
 };
 

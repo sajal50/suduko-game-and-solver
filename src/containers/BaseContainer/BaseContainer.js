@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import BaseComponent from '../../components/BaseComponent/BaseComponent.js';
-import { fetchNewGame, fetchPreviousGameIfAny } from '../../actions/initialLoadingActions.js';
+import { fetchNewGame } from '../../actions/initialLoadingActions.js';
 
 
 const mapStateToProps = (state) => {
@@ -15,9 +15,9 @@ const mapDispatchToProps = (dispatch) => {
 		fetchNewGame : () => {
 			dispatch (fetchNewGame())
 		},
-		fetchPreviousGameIfAny : () => {
-			dispatch (fetchPreviousGameIfAny())
-		}
+		// fetchPreviousGameIfAny : () => {
+		// 	dispatch (fetchPreviousGameIfAny())
+		// }
 	};
 
 };

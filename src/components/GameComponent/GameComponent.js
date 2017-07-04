@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { CircularProgress } from 'material-ui/Progress';
 import SudokuBoardComponent from './SudokuBoardComponent/SudokuBoardComponent.js';
 import NumberPalleteComponent from './NumberPalleteComponent/NumberPalleteComponent.js';
+import * as localforage from 'localforage';
 
 
 class HomeComponent extends Component {
@@ -18,11 +19,17 @@ class HomeComponent extends Component {
 		if (newGame) {
 			this.props.getNewGame();
 		} else {
-			console.log ('load old game');
+			localforage.getItem ('previousGameBoard')
+			.then ((previousGameBoard) => {
+				if (previousGameBoard && previousGameBoard.length) {
+					this.props.getPreviousGameBoard();
+				} else {
+					this.props.getNewGame();
+				}
+			});
 		}
 	}
 	onClickCubeHandler (selectedCube) {
-		console.log (selectedCube);
 		if (!selectedCube.fixed) {
 			this.setState ({selectedCubeIndex : selectedCube.index})
 		}
@@ -30,6 +37,7 @@ class HomeComponent extends Component {
 	onClickNumberHandler (selectedNumber) {
 		if (this.state.selectedCubeIndex>=0 && this.state.selectedCubeIndex <=80) {
 			this.props.updateCurrentGameBoard (this.state.selectedCubeIndex, selectedNumber);
+			this.setState ({selectedCubeIndex : null});
 		}
 	}
 	render() {

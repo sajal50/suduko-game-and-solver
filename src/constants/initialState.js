@@ -3,7 +3,7 @@ let initialState = () => {
 	return {
 
 		flags : {
-			newGame : true,
+			newGame : false,
 			gameLoaded : false
 		},
 		currentGameBoard : [],

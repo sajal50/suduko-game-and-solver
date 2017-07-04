@@ -8,7 +8,6 @@ class BaseComponent extends React.Component {
 
 	componentWillMount () {
 		this.props.fetchNewGame ();
-		this.props.fetchPreviousGameIfAny ();
 	}
 	render () {
 

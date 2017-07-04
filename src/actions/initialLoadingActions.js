@@ -30,12 +30,6 @@ const setNewGameBoard = (board) => {
 	};
 }
 
-const setPreviousGameBoard = (board) => {
-	return {
-		type : actionConstants.SET_PREVIOUS_GAME_BOARD,
-		board
-	};
-}
 
 const setCurrentBoard = (board) => {
 	return {
@@ -71,18 +65,13 @@ export function fetchNewGame () {
 	};
 }
 
-export function fetchPreviousGameIfAny () {
-	return (dispatch, getState) => {
 
-		localforage.getItem ('previousGameBoard')
-		.then ((previousGameBoard) => {
-			if (previousGameBoard && previousGameBoard.length) {
-				setPreviousGameBoard(previousGameBoard);
-			}
-		});
-	};
+const _updateLocalStoragePreviousGameBoard = (board) => {
+	localforage.setItem ('previousGameBoard', board)
+	.then (() => console.log ('saved'))
+	.catch (() => console.log ('error saving'));
+
 }
-
 export function getNewGame () {
 	return (dispatch, getState) => {
 		const newGameBoard = getState().newGameBoard;
@@ -90,15 +79,18 @@ export function getNewGame () {
 		if ( newGameBoard && newGameBoard.length) {
 
 			dispatch (setCurrentBoard(newGameBoard));
-			dispatch(setFlags ({gameLoaded:true}));
+			dispatch (setFlags ({gameLoaded:true}));
 			dispatch (fetchNewGame());
+			_updateLocalStoragePreviousGameBoard (getState().currentGameBoard);
+
 
 		} else {
 			_fetchNewGameFromNetwork ()
 			.then ((board) => {
 				dispatch (setCurrentBoard(board));
-				dispatch(setFlags ({gameLoaded:true}));
+				dispatch (setFlags ({gameLoaded:true}));
 				dispatch (fetchNewGame());
+				_updateLocalStoragePreviousGameBoard (getState().currentGameBoard);
 			})
 			.catch ((err) => {
 				console.log (err);
@@ -117,5 +109,23 @@ export function updateCurrentGameBoard (index, value) {
 				value
 			}
 		});
+		_updateLocalStoragePreviousGameBoard (getState().currentGameBoard);
 	};
+}
+
+export function getPreviousGameBoard () {
+	return (dispatch, getState) => {
+
+		localforage.getItem ('previousGameBoard')
+		.then ((previousGameBoard) => {
+			if (previousGameBoard && previousGameBoard.length) {
+		
+				dispatch (setCurrentBoard(previousGameBoard));
+				dispatch (setFlags ({gameLoaded:true}));
+		
+			} else {
+				throw new Error ('No previousGameBoard found');
+			}
+		});
+	}
 }
