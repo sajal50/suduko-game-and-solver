@@ -9,8 +9,9 @@ import store  from './store/store.js';
 import {Provider} from 'react-redux';
 import BaseContainer from './containers/BaseContainer/BaseContainer.js';
 import './index.css';
-
+import './globalAssets/roboto.css';
 injectTapEventPlugin();
+
 ReactDOM.render(
 	<Provider store = {store}>
 		<MuiThemeProvider>

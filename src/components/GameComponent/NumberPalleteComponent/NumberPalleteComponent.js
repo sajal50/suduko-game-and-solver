@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import * as _ from 'lodash';
+import Grid from 'material-ui/Grid';
+import { withStyles } from 'material-ui/styles';
+import styleSheet from './assets/css.js';
 
 class NumberPalleteComponent extends Component {
 	getNumbers () {
@@ -10,13 +13,13 @@ class NumberPalleteComponent extends Component {
 		return numbers;
 	}
 	render() {
+		const {classes} = this.props
 		return (
-			<div>
-				<hr/>
+			<div className = {classes.root}>
 				{this.getNumbers()}
 			</div>
 		);
 	}
 }
 
-export default NumberPalleteComponent;
+export default withStyles(styleSheet)(NumberPalleteComponent);
