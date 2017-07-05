@@ -76,7 +76,14 @@ class GameComponent extends Component {
 						<div>{errorMessage}</div>
 						<Grid item xs = {12} sm = {10} md = {6} className = {classes.bottomContainer}>
 							<NumberPalleteComponent onClickNumberHandler = {this.onClickNumberHandler} />
-							<Button raised color = 'primary' onClick = {() => this.onClickSubmitGameHandler()}> Submit </Button>
+							<Button 
+								className = {classes.submitButton}
+								raised 
+								color = 'primary'
+								onClick = {() => this.onClickSubmitGameHandler()}
+							> 
+								Submit
+							</Button>
 						</Grid>
 
 					</Grid>

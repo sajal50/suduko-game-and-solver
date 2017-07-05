@@ -12,7 +12,11 @@ const styleSheet = createStyleSheet('GameComponent', theme => ({
 		position : 'absolute',
 		bottom : 0,
 		width : '100%',
-		borderTop : 'solid 3px #916c2d'
+		borderTop : 'solid 3px #916c2d',
+		padding : '10px'
+	},
+	submitButton : {
+		width : '100%'
 	}
 }));
 
