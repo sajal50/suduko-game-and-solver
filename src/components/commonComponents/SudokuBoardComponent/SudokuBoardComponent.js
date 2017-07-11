@@ -6,7 +6,18 @@ import styleSheet from './assets/css.js';
 import classnames from 'classnames';
 
 class SudokuBoardComponent extends Component {
-	
+	constructor (props) {
+		super(props);
+		this.state = {
+			blankBoard : []
+		};
+		for (let i = 0; i<81; i++) {
+			this.state.blankBoard.push({
+				value: 0,
+				index : i
+			});
+		}
+	}
 	getAllCubes (board) {
 		let rows = _.chunk (board, 9);
 		return rows.map ((singleRow, rowIndex) => {
@@ -19,7 +30,7 @@ class SudokuBoardComponent extends Component {
 									<Grid item xs = {1} key = {cubeIndex}>
 										<div className = {classnames(this._getClassForCube(singleCube))}
 											key = {cubeIndex}
-											onClick = {() => this.props.onClickCubeHandler(singleCube)}
+											onClick = {() => {this.props.onClickCubeHandler && this.props.onClickCubeHandler(singleCube)}}
 										> 
 											<span 
 												className = {classnames(this._getClassForValue(singleCube.value))}
@@ -90,7 +101,7 @@ class SudokuBoardComponent extends Component {
 		return set.has(index);
 	}
 	render() {
-		const {board} = this.props;
+		const board = (this.props.board && this.props.board.length === 81 && this.props.board ) || this.state.blankBoard;
 		return (
 			<div>
 				{this.getAllCubes(board)}

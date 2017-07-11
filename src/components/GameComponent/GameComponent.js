@@ -7,7 +7,7 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 
 import styleSheet from './assets/css.js';
-import SudokuBoardComponent from './SudokuBoardComponent/SudokuBoardComponent.js';
+import SudokuBoardComponent from '../commonComponents/SudokuBoardComponent/SudokuBoardComponent.js';
 import NumberPalleteComponent from './NumberPalleteComponent/NumberPalleteComponent.js';
 import isValidSudokuSolution from '../../utils/sudokuChecker.js';
 

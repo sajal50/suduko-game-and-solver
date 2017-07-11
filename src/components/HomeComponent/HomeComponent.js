@@ -8,6 +8,7 @@ class HomeComponent extends Component {
 		super (props);
 		this.newGameClickHandler = this.newGameClickHandler.bind(this);
 		this.resumeGameClickHandler = this.resumeGameClickHandler.bind(this);
+		this.solveClickHandler = this.solveClickHandler.bind(this);
 		this.state = {
 			isPreviousGameBoardAvailable : false
 		};
@@ -28,12 +29,15 @@ class HomeComponent extends Component {
 		this.props.setFlags ({newGame : false});
 		this.props.history.push('/game');
 	}
+	solveClickHandler () {
+		this.props.history.push('/solve');
+	}
 	render() {
 		const {isPreviousGameBoardAvailable} = this.state;
 		return (
 			<div>
 				<Button onClick = {this.newGameClickHandler} raised color = 'primary'>New Game!</Button>
-				<Button raised color = 'accent'>Solver</Button>
+				<Button raised color = 'accent' onClick = {this.solveClickHandler} >Solver</Button>
 				{
 					(isPreviousGameBoardAvailable) ?
 					<Button raised color = 'primary' onClick = {this.resumeGameClickHandler}>Resume</Button>
