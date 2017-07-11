@@ -4,11 +4,13 @@ import Button from 'material-ui/Button';
 import * as localforage from 'localforage';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
+import Paper from 'material-ui/Paper';
 
 import styleSheet from './assets/css.js';
 import SudokuBoardComponent from './SudokuBoardComponent/SudokuBoardComponent.js';
 import NumberPalleteComponent from './NumberPalleteComponent/NumberPalleteComponent.js';
 import isValidSudokuSolution from '../../utils/sudokuChecker.js';
+
 
 class GameComponent extends Component {
 	constructor (props) {
@@ -67,24 +69,27 @@ class GameComponent extends Component {
 				<Grid container justify = 'center' className = {classes.root}>
 
 					<Grid item xs = {12} sm = {10} md = {6}>
-						<div className = {classes.sudokuContainer} >
+						<Paper elevation = {4} className = {classes.sudokuContainer} >
 							<SudokuBoardComponent 
 								selectedCubeIndex = {selectedCubeIndex}
 								board = {currentGameBoard}
 								onClickCubeHandler = {this.onClickCubeHandler}  />
-						</div>
+						</Paper>
 						<div>{errorMessage}</div>
 						<Grid item xs = {12} sm = {10} md = {6} className = {classes.bottomContainer}>
-							<NumberPalleteComponent onClickNumberHandler = {this.onClickNumberHandler} />
-							<Button 
-								className = {classes.submitButton}
-								raised 
-								color = 'primary'
-								onClick = {() => this.onClickSubmitGameHandler()}
-							> 
-								Submit
-							</Button>
+							<Paper elevation = {4} className = {classes.sudokuContainer} >
+								<NumberPalleteComponent onClickNumberHandler = {this.onClickNumberHandler} />
+								<Button 
+									className = {classes.submitButton}
+									raised 
+									color = 'primary'
+									onClick = {() => this.onClickSubmitGameHandler()}
+								> 
+									Submit
+								</Button>
+							</Paper>
 						</Grid>
+						
 
 					</Grid>
 				</Grid>

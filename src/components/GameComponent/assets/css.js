@@ -6,14 +6,14 @@ const styleSheet = createStyleSheet('GameComponent', theme => ({
 		top : 0
 	},
 	sudokuContainer : {
-		backgroundColor: 'rgba(255, 255, 255, 0.6)'
+		backgroundColor: 'rgba(255, 255, 255, 0.6)',
+		paddingTop : '10px',
+		paddingBottom : '10px'
 	},
 	bottomContainer : {
 		position : 'absolute',
 		bottom : 0,
-		width : '100%',
-		borderTop : 'solid 3px #916c2d',
-		padding : '10px'
+		width : '100%'
 	},
 	submitButton : {
 		width : '100%'
