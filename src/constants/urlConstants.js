@@ -3,7 +3,7 @@
 let urlConstants = () => {
 	return {
 
-		"board" : ""
+		"board" : "https://xab13tdc36.execute-api.us-west-2.amazonaws.com/dev/board"
 	};
 
 

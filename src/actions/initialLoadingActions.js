@@ -57,7 +57,10 @@ export function fetchNewGame () {
 	return (dispatch, getState) => {
 
 		_fetchNewGameFromNetwork ()
-		.then ((board) => dispatch((setNewGameBoard(board))))
+		.then ((board) => {
+			dispatch((setNewGameBoard(board)));
+			dispatch(setFlags({boardsFetched : true}));
+		})
 		.catch ((err) => {
 			console.log (err);
 		});

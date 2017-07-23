@@ -26,6 +26,12 @@ const styleSheet = createStyleSheet('SolverComponent', theme => ({
 	inputSudokuString : {
 		width : '100%',
 		marginBottom : '10px'
+	},
+	grey : {
+		color : '#666'
+	},
+	errorMessage : {
+		color : 'red'
 	}
 }));
 

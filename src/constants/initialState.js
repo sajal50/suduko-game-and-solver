@@ -4,7 +4,8 @@ let initialState = () => {
 
 		flags : {
 			newGame : false,
-			gameLoaded : false
+			gameLoaded : false,
+			boardsFetched : false
 		},
 		currentGameBoard : [],
 		newGameBoard : [],

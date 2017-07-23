@@ -50,10 +50,8 @@ class GameComponent extends Component {
 	}
 	onClickSubmitGameHandler () {
 		let sudokuArray = this._extractSudokuArray();
-		// sudokuArray = "483921657967345821251876493548132976729564138136798245372689514814253769695417382".split("");
-		// sudokuArray = sudokuArray.map ((singleValue) => +singleValue);
 		if (isValidSudokuSolution (sudokuArray)) {
-			console.log ('Game Completed');
+			this.setState ({errorMessage : 'Game Completed!'});
 		} else {
 			this.setState ({errorMessage : 'This is not a valid solution.'});
 		}
@@ -74,8 +72,11 @@ class GameComponent extends Component {
 								selectedCubeIndex = {selectedCubeIndex}
 								board = {currentGameBoard}
 								onClickCubeHandler = {this.onClickCubeHandler}  />
+							<Grid container align = 'center' justify = 'center' gutter = {0}>
+								<h2>{errorMessage}</h2>
+							</Grid>
 						</Paper>
-						<div>{errorMessage}</div>
+
 						<Grid item xs = {12} sm = {10} md = {6} className = {classes.bottomContainer}>
 							<Paper elevation = {4} className = {classes.sudokuContainer} >
 								<NumberPalleteComponent onClickNumberHandler = {this.onClickNumberHandler} />

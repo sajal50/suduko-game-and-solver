@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { CircularProgress } from 'material-ui/Progress';
 import Button from 'material-ui/Button';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
@@ -20,7 +19,7 @@ class GameComponent extends Component {
 		};
 	}
 	onClickSolveGameHandler () {
-		let sudokuStringToBeSolved = this.sudokuStringRef.value;
+		let sudokuStringToBeSolved = this.sudokuStringRef.value.trim();
 		let board = [];
 
 		try {
@@ -34,11 +33,16 @@ class GameComponent extends Component {
 			});
 		} catch (e) {
 			console.log (e);
+			this.setState({errorMessage : 'Input Board is incorrect.'});
+			setTimeout(() => {
+				this.setState({errorMessage : ''});
+			}, 2000);
 		}
 		this.setState ({board});
 	}
 	render() {
 		let {classes} = this.props;
+		let {errorMessage} = this.state;
 		return (
 			<Grid container justify = 'center' className = {classes.root}>
 
@@ -49,9 +53,13 @@ class GameComponent extends Component {
 					<Grid item xs = {12} sm = {10} md = {6} className = {classes.bottomContainer}>
 							<Paper elevation = {4} className = {classes.sudokuContainer} >
 								<div className = {classes.helperText} >
-									<h3>Sample Sudoku</h3>003020600900305001001806400008102900700000008006708200002609500800203009005010300
-									<div><i>0 represents unfilled spots.</i></div>
+									<h3>Sample Sudoku</h3>
+									<div className = {classes.grey}>
+										003020600900305001001806400008102900700000008006708200002609500800203009005010300
+									</div>
+									<div className = {classes.grey} ><i>0 represents unfilled spots.</i></div>
 								</div>
+								<div className = {classes.errorMessage}>{errorMessage}</div>
 								<TextField
 						          id="sudokuString"
 						          label="Enter a Sudoku Puzzle"

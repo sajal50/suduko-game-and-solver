@@ -4,8 +4,7 @@ import { setFlags } from '../../actions/flagActions.js';
 const mapStateToProps = (state) => {
 
 	return {
-	
-
+		boardsFetched : state.flags.boardsFetched
 	};
 };
 
